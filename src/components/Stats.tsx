@@ -4,7 +4,7 @@ import {changeStats} from "../features/stats/statsSlice.ts";
 import {useAppDispatch, useAppSelector} from "../app/hooks.ts";
 
 const Stats = () => {
-    const {followers, following} = useAppSelector(state => state.stats);
+    const stats = useAppSelector(state => state.stats);
     const name = useAppSelector(state => state.user.name);
     const dispatch = useAppDispatch();
 
@@ -21,14 +21,14 @@ const Stats = () => {
                         e.preventDefault();
                         dispatch(changeStats(FOLLOWERS, -1))
                     }}
-                >Followers: {followers}</div>
+                >Followers: {stats[FOLLOWERS]}</div>
                 <div
                     onClick={() => dispatch(changeStats(FOLLOWING, 1))}
                     onContextMenu={e => {
                         e.preventDefault();
                         dispatch(changeStats(FOLLOWING, -1))
                     }}
-                >Following: {following}</div>
+                >Following: {stats[FOLLOWING]}</div>
             </div>
         </div>
     );
